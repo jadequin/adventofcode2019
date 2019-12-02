@@ -40,9 +40,6 @@ class Intcode {
         output = arrayToString();
         return output;
     }
-    public String toString() {
-        return input;
-    }
 }
 
 //mission1
