@@ -26,8 +26,6 @@ class Intcode {
                 intcodeArr[intcodeArr[pos + 3]] = number1 + number2;
             else if(intcodeArr[pos] == 2)
                 intcodeArr[intcodeArr[pos + 3]] = number1 * number2;
-            else
-                throw new IllegalArgumentException("illegal operator found: valid operators are 1 for + and 2 for *");
             pos += 4;
         }
     }
