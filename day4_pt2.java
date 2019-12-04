@@ -1,9 +1,11 @@
+//something isn't working here ... will fix it soon
+
 String input = "265275-781584";
 int lowerBnd = Integer.parseInt(input.split("-")[0]);
 int upperBnd = Integer.parseInt(input.split("-")[1]);
 
 boolean containsTwins;
-int cntTwins = 0;
+int cntTwins;
 boolean adjacentTwins;
 int passwordCount = 0;
 
@@ -13,20 +15,21 @@ for(int num = lowerBnd; num <= upperBnd; num++) {
 
     containsTwins = false;
     adjacentTwins = false;
+    cntTwins = 0;
     for(int i = 1; i < digits.length; i++) {
         if(digits[i] < digits[i - 1])
             continue outer;
         if(digits[i] == digits[i - 1]) {
-            cntTwins += adjacentTwins? 1: 2; 
+            cntTwins += adjacentTwins? 1: 2;
             adjacentTwins = true;
             containsTwins = true;
         }
-        else if(adjacentTwins && cntTwins % 2 != 0)
+        else if(cntTwins % 2 == 1)
             continue outer;
         else {
-            adjacentTwins = false;
             cntTwins = 0;
+            adjacentTwins = false;
         }
     }
-    if(containsTwins) passwordCount++;
+    if(containsTwins && cntTwins % 2 == 0) passwordCount++;
 }
