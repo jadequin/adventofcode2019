@@ -1,11 +1,14 @@
 class VM {
-    final String programString;
+    final String program;
     long[] mem;
+    int memsize = 10_000;
     int[] paramModes, args;
     int ptr, inputPtr, relBase;
     int opcode;
 
-    VM(String programString) {this.programString = programString;}
+    VM(String program) {
+        this.program = program + String.join("", Collections.nCopies(memsize - program.split(",").length, ",0"));
+    }
 
     void operationSetup() {
         opcode = (int)(mem[ptr])%100;
@@ -23,13 +26,7 @@ class VM {
     }
     long execute(long[] inputs) {
         long output = -9999L;
-        
-        //setup Program
-        String[] prgArr = programString.split(",");
-        mem = new long[prgArr.length * 1_000]; //just make the memory bigger
-        for(int i = 0; i < prgArr.length; i++)
-            mem[i] = Long.parseLong(prgArr[i]);
-
+        mem = Arrays.stream(program.split(",")).mapToLong(Long::parseLong).toArray();
         relBase = ptr = inputPtr = 0;
 
         executionLoop: 
