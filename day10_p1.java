@@ -1,5 +1,6 @@
 import java.nio.file.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 class Point {
     int x, y;
