@@ -34,3 +34,4 @@ for(Point asteroid: asteroids) {
         if(!(asteroid.equals(p))) angles.add(asteroid.getAngle(p));
     if(angles.size() > maxSight) maxSight = angles.size();
 }
+System.out.println("Asteroid with best sight: " + maxSight);
