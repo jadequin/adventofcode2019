@@ -18,7 +18,21 @@ public class VM {
         String extendedMemProgram = program + String.join("", Collections.nCopies(memsize - program.split(",").length, ",0"));
         mem = Arrays.stream(extendedMemProgram.split(",")).mapToLong(Long::parseLong).toArray();
     }
-
+    
+    public long getOutput() {
+        while(executable() && !inputRequired())
+            executeOperation();
+        
+        return outputs.poll();
+    }
+    
+    public void giveInput(long input) {
+        inputs.add(input);
+        while(executable() && !inputRequired())
+            executeOperation();
+    }
+    
+    @Deprecated
     public long[] cameraInteraction(long input) {
         inputs.add(input);
 
